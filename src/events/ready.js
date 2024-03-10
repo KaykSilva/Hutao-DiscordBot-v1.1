@@ -6,7 +6,7 @@ module.exports = {
 	execute(client) {
 		console.log(`Tudo pronto, estou conectada ${client.user.tag}`);
 		client.user.setPresence({
-			activities: [{ name: `KShzZ`, type: ActivityType.Watching }],
+			activities: [{ name: `Discord: @KShzZ`, type: ActivityType.Watching }],
 			status: 'dnd',
 		  });
 	},
