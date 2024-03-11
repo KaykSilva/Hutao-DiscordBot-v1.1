@@ -134,10 +134,10 @@ module.exports = {
             });
         });
 
-        collector.on('end', (collected, reason) => {
+        collector.on('end', async (collected, reason) => {
             if (reason === 'time') {
                 // Usuário não respondeu a tempo
-                interaction.followUp('Tempo expirado. A configuração não foi concluída.');
+                await interaction.followUp('Tempo expirado. A configuração não foi concluída.');
             } else {
                 
                 // Atualize o arquivo JSON com as configurações coletadas
@@ -147,7 +147,7 @@ module.exports = {
                 try {
                     const data = fs.readFileSync(filePath, 'utf-8');
                     existingSettings = JSON.parse(data);
-                    interaction.followUp('Configurações salvas com sucesso!');
+                  await  interaction.followUp('Configurações salvas com sucesso!');
                 } catch (error) {
                     console.error('Erro ao ler o arquivo JSON:', error);
                 }

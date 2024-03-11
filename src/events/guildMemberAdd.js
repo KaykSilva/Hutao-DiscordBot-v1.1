@@ -38,12 +38,12 @@ module.exports = {
         const userAvatarUrl = member.user.displayAvatarURL({ format: 'png', size: 512 });
 
         const exampleEmbed = new EmbedBuilder()
-            .setColor(0x0099FF)
+            .setColor('#fb0036')
             .setTitle(`Bem-vindo a ${member.guild.name} `)
             .setURL('https://discord.gg/dAXKWdPnnh')
             .setAuthor({ name: member.user.username, iconURL: userAvatarUrl, url: 'https://discord.js.org' })
 
-            .setDescription(`Hey ${member.user.tag}, ${description} \n\n ${title1} ${channel1} \n\n  ${title2} ${channel2} \n\n  ${title3} ${channel3} \n\n   `)
+            .setDescription(`**Hey ${member.user.tag}, ${description}** \n\n ${title1} ${channel1} \n  ${title2} ${channel2} \n  ${title3} ${channel3} \n   `)
             .setThumbnail(userAvatarUrl)
             .setImage(banner) // Define a imagem do embed como o avatar do usuário
             .setTimestamp()
