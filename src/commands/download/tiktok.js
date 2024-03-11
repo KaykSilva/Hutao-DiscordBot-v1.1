@@ -11,14 +11,14 @@ module.exports = {
 
         const video = new ButtonBuilder()
             .setCustomId('video')
-            .setLabel("Formato de vídeo")
-            .setEmoji("💮")
+            .setLabel("Vídeo")
+            .setEmoji("📽️")
             .setStyle(ButtonStyle.Danger);
 
         const audio = new ButtonBuilder()
-            .setCustomId('audio')
+            .setCustomId('Audio')
             .setLabel("Formato de áudio")
-            .setEmoji("😽")
+            .setEmoji("🎶")
             .setStyle(ButtonStyle.Primary);
 
         const row = new ActionRowBuilder()
