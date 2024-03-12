@@ -44,7 +44,7 @@ module.exports = {
 
                 new StringSelectMenuOptionBuilder()
                     .setLabel('Canal 1')
-                    .setDescription('Destaque um chat na mensagem')
+                    .setDescription('Selecione o canal para o título 1')
                     .setValue('channel1'),
 
                 new StringSelectMenuOptionBuilder()
