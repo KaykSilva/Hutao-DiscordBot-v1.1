@@ -4,7 +4,7 @@ const fs = require('node:fs');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("mora")
-        .setDescription("Veja seu saldo de mora"),
+        .setDescription("(Economia) Veja seu saldo de mora"),
 
     async execute(interaction) {
         const moraFile = './src/db/money/mora.json';
@@ -26,11 +26,11 @@ module.exports = {
         
         const userMora = getMora(interaction.user.id);
         if (userMora < 50) {
-            interaction.reply(`Paimon gastou toda sua mora com comida, você poussui um total de **${userMora} mora**`);
+            interaction.reply(`<:perdeu:1217634795576623245> Paimon gastou toda sua mora com comida, você poussui um total de <:mora:1217594423941005393>**${userMora} mora**`);
         } else if (userMora <= 5000) {  
-            interaction.reply(`Childe passou por aqui.. você poussui um total de **${userMora} mora**`);
+            interaction.reply(`<:hi:1217643119315521670 Childe passou por aqui.. você poussui um total de <:mora:1217594423941005393>**${userMora} mora**`);
         } else {
-            interaction.reply(`Um comerciante de liyue?, você poussui um total de **${userMora} mora**`);
+            interaction.reply(`<:hi:1217643119315521670 Um comerciante de liyue?, você poussui um total de <:mora:1217594423941005393>**${userMora} mora**`);
         }
         
 

@@ -4,7 +4,7 @@ const fs = require('fs');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("welcome")
-        .setDescription('Customização para mensagem de boas-vindas'),
+        .setDescription('(Administração) Customização para mensagem de boas-vindas'),
     async execute(interaction) {
         const guildId = interaction.guild.id; // Obtenha a ID da guilda
 

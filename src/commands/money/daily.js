@@ -1,11 +1,11 @@
 const { SlashCommandBuilder } = require("discord.js");
 const fs = require('node:fs');
-const moraManager = require('./moraManager');  // Correção: troque o asterisco por ponto e vírgula
+const moraManager = require('./moraManager'); 
 
 module.exports = {
     data: new SlashCommandBuilder() 
         .setName("daily")
-        .setDescription("Missão diária para ganhar mora"),
+        .setDescription("(Economia) Missão diária para ganhar mora"),
     async execute(interaction) {
         const moraFile = './src/db/money/mora.json';
         
@@ -25,7 +25,7 @@ module.exports = {
 
         const dailyMora = randomNumber(1000, 2000);
         moraManager.addMora(interaction.user.id, dailyMora, currentTimestamp, moraFile);
-        interaction.reply(`Parabéns por completar sua missão diária, aqui está seu pagamento, **${dailyMora} mora**.`);
+        interaction.reply(`<:hi:1217643119315521670 Parabéns por completar sua missão diária, aqui está seu pagamento, **${dailyMora} mora**.`);
     
         function randomNumber(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);

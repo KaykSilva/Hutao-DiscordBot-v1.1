@@ -5,7 +5,7 @@ const { apiKey } = require('../../../config.json');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("tiktok")
-        .setDescription("Baixa mídia do Tiktok"),
+        .setDescription("(Download) Baixa mídia do Tiktok"),
 
     async execute(interaction) {
 
