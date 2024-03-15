@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const moraManager = require('./moraManager');
+const moraManager = require('../../services/moraManager');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -109,17 +109,19 @@ module.exports = {
             let outerSide = ''
 
             if (choiceSide === 'coroa') {
-                await interaction.followUp(`${mentionTag} escolheu ${choiceSide} e ${userTag} ficou com cara.`)
+                await interaction.followUp(`${mentionTag} escolheu ${choiceSide} e **${userTag}** ficou com **cara**.`)
                 outerSide = 'cara'
                 responseSent = true
+                
 
             } else if (choiceSide === 'cara') {
-                await interaction.followUp(`${mentionTag} escolheu ${choiceSide} e ${userTag} ficou com coroa`)
+                await interaction.followUp(`${mentionTag} escolheu **${choiceSide}** e ${userTag} ficou com **coroa**`)
                 outerSide = 'coroa'
                 responseSent = true
-
+               
             } else {
-                await interaction.followUp(`Resposta inválida, escolha novamente <:perdeu:1217634795576623245>`)
+                await interaction.followUp(`Resposta inválida, Aposta encerrada <:perdeu:1217634795576623245>`)
+                mentionCollector.stop()
                 return
             }
             const randomNumber = Math.random();
@@ -130,7 +132,7 @@ module.exports = {
                 moraManager.addMoraFlip(target.id, mora, moraFile); // Adicionar mora ao usuário desafiado
                 moraManager.removeMora(interaction.user.id, mora, moraFile); // Remover mora do usuário que desafiou
             } else {
-                await interaction.followUp(`<:perdeu:1217634795576623245>${userTag} Perdeu <:mora:1217594423941005393>**${mora}** mora para ${mentionTag} Resultado: **${result}** `);
+                await interaction.followUp(`<:perdeu:1217634795576623245>${mentionTag} Perdeu <:mora:1217594423941005393>**${mora}** mora para ${userTag} Resultado: **${result}** `);
                 moraManager.addMoraFlip(interaction.user.id, mora, moraFile); // Adicionar mora ao usuário que desafiou
                 moraManager.removeMora(target.id, mora, moraFile); // Remover mora do usuário desafiado
             }

@@ -26,11 +26,11 @@ module.exports = {
         
         const userMora = getMora(interaction.user.id);
         if (userMora < 50) {
-            interaction.reply(`<:perdeu:1217634795576623245> Paimon gastou toda sua mora com comida, você poussui um total de <:mora:1217594423941005393>**${userMora} mora**`);
+            interaction.reply(`<:perdeu:1217634795576623245> Paimon gastou toda sua mora com comida, você possui um total de <:mora:1217594423941005393>**${userMora} mora**`);
         } else if (userMora <= 5000) {  
-            interaction.reply(`<:hi:1217643119315521670 Childe passou por aqui.. você poussui um total de <:mora:1217594423941005393>**${userMora} mora**`);
+            interaction.reply(`<:hi:1217643119315521670> Childe passou por aqui.. você possui um total de <:mora:1217594423941005393>**${userMora} mora**`);
         } else {
-            interaction.reply(`<:hi:1217643119315521670 Um comerciante de liyue?, você poussui um total de <:mora:1217594423941005393>**${userMora} mora**`);
+            interaction.reply(`<:hi:1217643119315521670> Um comerciante de liyue?, você possui um total de <:mora:1217594423941005393>**${userMora} mora**`);
         }
         
 

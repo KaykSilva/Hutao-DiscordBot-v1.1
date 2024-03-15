@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const fs = require('node:fs');
-const moraManager = require('./moraManager'); 
+const moraManager = require('../../services/moraManager'); 
 
 module.exports = {
     data: new SlashCommandBuilder() 
@@ -25,7 +25,7 @@ module.exports = {
 
         const dailyMora = randomNumber(1000, 2000);
         moraManager.addMora(interaction.user.id, dailyMora, currentTimestamp, moraFile);
-        interaction.reply(`<:hi:1217643119315521670 Parabéns por completar sua missão diária, aqui está seu pagamento, **${dailyMora} mora**.`);
+        interaction.reply(`<:hi:1217643119315521670> Parabéns por completar sua missão diária, aqui está seu pagamento, **${dailyMora} mora**.`);
     
         function randomNumber(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);

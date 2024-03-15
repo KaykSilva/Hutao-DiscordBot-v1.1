@@ -61,12 +61,16 @@ function removeMora(userId, amount) {
         saveMoraData(moraData);
     }
 }
-
+function getMora(userId) {
+    const moraData = loadMoraData();
+    return moraData[userId]?.moraBalance || 0;
+}
 module.exports = {
     getLastDailyTimestamp,
     addMora,
     loadMoraData,
     saveMoraData,
     addMoraFlip,
-    removeMora
+    removeMora,
+    getMora
 };
