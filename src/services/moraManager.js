@@ -63,8 +63,18 @@ function removeMora(userId, amount) {
 }
 function getMora(userId) {
     const moraData = loadMoraData();
-    return moraData[userId]?.moraBalance || 0;
+    const moraBalance = moraData[userId]?.moraBalance || 0;
+
+    if (moraBalance >= 1000000) {
+        return `${(moraBalance / 1000000).toFixed(1)}m`;
+    } else if (moraBalance >= 1000) {
+        return `${(moraBalance / 1000).toFixed(1)}k`;
+    } else {
+        return moraBalance.toString();
+    }
 }
+
+
 module.exports = {
     getLastDailyTimestamp,
     addMora,

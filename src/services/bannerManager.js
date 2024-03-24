@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const bannerFile = './src/db/user/banners.json';
 
-function loadbioData() {
+function loadbannerData() {
     try {
         if (!fs.existsSync(bannerFile)) {
             fs.writeFileSync(bannerFile, '{}');
@@ -22,10 +22,10 @@ function loadbioData() {
     }
 }
 
-function saveBanner(bioData) {
+function saveBanner(bannerData) {
     try {
         console.log('Salvando dados de banner no arquivo:', bannerFile);
-        fs.writeFileSync(bannerFile, JSON.stringify(bioData, null, 2));
+        fs.writeFileSync(bannerFile, JSON.stringify(bannerData, null, 2));
         console.log('Dados salvos com sucesso:', bannerFile);
     } catch (error) {
         console.error(`Erro ao salvar dados no arquivo ${bannerFile}:`, error);
@@ -33,20 +33,45 @@ function saveBanner(bioData) {
 }
 
 function addBio(userId, value) {
-    const bioData = loadbioData();
-    bioData[userId] = bioData[userId] || {};
-    bioData[userId].bio = value;
-    saveBanner(bioData);
+    const bannerData = loadbannerData();
+    bannerData[userId] = bannerData[userId] || {};
+    bannerData[userId].bio = value;
+    saveBanner(bannerData);
     console.log(`bio adicionada para o usuário ${userId}`);
 }
+function writeBannerNumber(userId, bannerNumber) {
+    const bannerData = loadbannerData();
+    bannerData[userId] = bannerData[userId] || {};
+    bannerData[userId].bannerConfig.bannerNumber = bannerNumber;
+    saveBanner(bannerData);
+    console.log(`banner adicionado para o usuário ${userId}`);
+}
 
+function getBannerConfig(userId) {
+    const bannerData = loadbannerData();
+    return bannerData[userId]?.bannerConfig || {};
+}
 
 function getBio(userId) {
-    const bioData = loadbioData();
-    return bioData[userId]?.bio || '';
+    const bannerConfig = getBannerConfig(userId);
+    return bannerConfig.bio || '';
 }
+
+function getBannerLink(userId, linkNumber) {
+    const bannerConfig = getBannerConfig(userId);
+    return bannerConfig[`bannerLink${linkNumber}`] || '';
+}
+function getBannerNumber(userId) {
+    const bannerConfig = getBannerConfig(userId);
+    return bannerConfig[`bannerNumber`] || '';
+}
+
+
 module.exports = {
     saveBanner,
+    getBannerLink,
     addBio,
-    getBio
+    getBio,
+    writeBannerNumber,
+    getBannerNumber
 };
