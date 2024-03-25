@@ -35,7 +35,7 @@ function saveBanner(bannerData) {
 function addBio(userId, value) {
     const bannerData = loadBannerData();
     bannerData[userId] = bannerData[userId] || {};
-    bannerData[userId].bio = value;
+    bannerData[userId].bannerConfig.bio = value;
     saveBanner(bannerData);
     console.log(`bio adicionada para o usuário ${userId}`);
 }
