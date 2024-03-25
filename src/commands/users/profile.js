@@ -20,10 +20,8 @@ module.exports = {
         // Carregar a imagem de fundo padrão
         const defaultBanner = 'https://i.pinimg.com/564x/6e/be/d2/6ebed2de9b292cea782c89932382a874.jpg'
 
-        let bannerCount = bannerManager.getBannerNumber(interaction.user.id)
-        console.log(`banner atual ${bannerCount}` )
+       let bannerCount = bannerManager.getBannerNumber(interaction.user.id) || 0
         let bannerLink = bannerManager.getBannerLink(interaction.user.id, bannerCount) || defaultBanner
-
 
         //buutons
         const confirm = new ButtonBuilder()
@@ -64,10 +62,7 @@ module.exports = {
             .setImage(bannerLink)
             .setTimestamp()
 
-
-
-
-        let responseSent = false;
+        let responseSent = true;
 
         const collector = interaction.channel.createMessageComponentCollector({ time: 15000 });
 
@@ -75,9 +70,10 @@ module.exports = {
             i.deferUpdate();
             if (i.customId === 'changeBanner') {
                 if (bannerLink !== defaultBanner) {
+                    responseSent = false
                     await interaction.editReply({ components: [editBanner], embeds: [exampleEmbed] });
                 } else {
-                    await interaction.editReply({ content: `**<@${interaction.user.id}> <:perdeu:1217634795576623245> Você não possui banners, visite /loja para obter.**`, components: [] });
+                    await interaction.editReply({ content: `**<@${interaction.user.id}> <:perdeu:1217634795576623245> Você não possui banners, visite /loja para obter.**`, components: [editBanner] });
                 }
             } else if (i.customId === 'nextBanner') {
                 await nextBanner();
@@ -100,7 +96,6 @@ module.exports = {
 
         async function nextBanner() {
             bannerCount++;
-            bannerManager.writeBannerNumber(interaction.user.id, bannerCount)
             console.log(bannerCount)
             bannerLink = bannerManager.getBannerLink(interaction.user.id, bannerCount) || defaultBanner;
             exampleEmbed.setImage(bannerLink);
@@ -110,7 +105,6 @@ module.exports = {
 
         async function backBanner() {
             bannerCount--;
-            bannerManager.writeBannerNumber(interaction.user.id, bannerCount)
             if (bannerCount < 1) bannerCount = 1;
             bannerLink = bannerManager.getBannerLink(interaction.user.id, bannerCount) || defaultBanner;
             exampleEmbed.setImage(bannerLink);
@@ -119,7 +113,8 @@ module.exports = {
         }
         async function setBanner() {
             interaction.followUp("Banner setado com sucesso <:huzinha:1218041595266338856>");
-            
+            console.log(bannerCount)
+            bannerManager.writeBannerNumber(interaction.user.id, bannerCount)
         }
         
         const background = await loadImage(bannerLink);
@@ -174,12 +169,12 @@ module.exports = {
         // Carregar emojis
         const moraEmoji = await loadImage('https://images.gamebanana.com/img/ico/sprays/61a81999c66e9.gif');
         const bookEmoji = await loadImage('https://cdn.discordapp.com/emojis/853624482894577684.png');
-        const devBadge = await loadImage('https://cdn.discordapp.com/emojis/1042188338888704060.png');
+        //const devBadge = await loadImage('https://cdn.discordapp.com/emojis/1042188338888704060.png');
 
         // Desenhar emojis
         ctx.drawImage(moraEmoji, 10, 210, 30, 30);
         ctx.drawImage(bookEmoji, 10, 250, 30, 30);
-        ctx.drawImage(devBadge, 450, 140, 25, 25);
+        //ctx.drawImage(devBadge, 450, 140, 25, 25);
 
 
         // Converter o canvas em um buffer de imagem

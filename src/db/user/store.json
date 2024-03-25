@@ -1,0 +1,25 @@
+{
+  "bannersStorage": {
+    "banner1": {
+      "bannerUrl": "https://i.pinimg.com/564x/90/8d/ee/908deec53fa456c6f4274714cff42a9e.jpg",
+      "bannerName": "Minecraft",
+      "bannerValue": "4000"
+    },
+    "banner2": {
+      "bannerUrl": "https://i.pinimg.com/564x/6d/08/9e/6d089e0a9390e13507ae53c62255bfdc.jpg",
+      "bannerName": "Furina",
+      "bannerValue": "6000"
+    },
+    "banner3": {
+      "bannerUrl": "https://i.pinimg.com/564x/c8/75/da/c875da645647ba53982aabf8bf496bcf.jpg",
+      "bannerName": "Buraco Negro",
+      "bannerValue": "2000"
+    }
+    },
+    "banner4": {
+      "bannerUrl": "https://i.pinimg.com/564x/c8/75/da/c875da645647ba53982aabf8bf496bcf.jpg",
+      "bannerName": "Rex",
+      "bannerValue": "1500"
+    }
+  }
+
